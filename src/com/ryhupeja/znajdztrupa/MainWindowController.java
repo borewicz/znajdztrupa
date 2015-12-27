@@ -22,11 +22,8 @@ public class MainWindowController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		ObservableList<String> list = FXCollections.observableArrayList();
-		Connection conn = Database.connectToServer();
-		Statement statement;
+		ResultSet result = Database.executeQuery("select name from cemetery");
 		try {
-			statement = conn.createStatement();
-			ResultSet result = statement.executeQuery("select name from cemetery");
 			while (result.next()) {
 				list.add(result.getString(1));
 			}
