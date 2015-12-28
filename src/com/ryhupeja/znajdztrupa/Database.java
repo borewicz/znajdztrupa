@@ -22,7 +22,6 @@ public class Database {
 			statement = conn.createStatement();
 			return statement.executeQuery(query);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}

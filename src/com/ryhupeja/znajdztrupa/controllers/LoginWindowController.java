@@ -1,6 +1,9 @@
-package com.ryhupeja.znajdztrupa;
+package com.ryhupeja.znajdztrupa.controllers;
 
 import java.sql.*;
+
+import com.ryhupeja.znajdztrupa.Database;
+import com.ryhupeja.znajdztrupa.Message;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

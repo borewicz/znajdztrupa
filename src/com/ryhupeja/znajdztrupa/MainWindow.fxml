@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryhupeja.znajdztrupa.MainWindowController">
-   <center>
-      <VBox>
-         <children>
-            <Button fx:id="loginButton" mnemonicParsing="false" text="Login" onAction="#loginButtonClicked"/>
-            <ListView fx:id="cemeteryListView" prefHeight="200.0" prefWidth="200.0" />
-         </children>
-      </VBox>
-   </center>
-</BorderPane>
+<VBox prefHeight="200.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.ryhupeja.znajdztrupa.controllers.MainController">
+  <children>
+    <Button fx:id="goBackButton" maxWidth="1.7976931348623157E308" text="Go back" VBox.vgrow="NEVER" onAction="#goBackButtonClicked"/>
+    <StackPane fx:id="vistaHolder" VBox.vgrow="ALWAYS" />
+  </children>
+</VBox>
