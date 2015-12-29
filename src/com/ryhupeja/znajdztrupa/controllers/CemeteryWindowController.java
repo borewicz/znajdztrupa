@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.ryhupeja.znajdztrupa.Database;
 import com.ryhupeja.znajdztrupa.SceneNavigator;
+import com.ryhupeja.znajdztrupa.Windows;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +34,9 @@ public class CemeteryWindowController implements Initializable {
 	}
     @FXML protected void loginButtonClicked(ActionEvent event) {
     	SceneNavigator.loadScene(SceneNavigator.LOGIN);
+    }
+    @FXML protected void newCemeteryButtonClicked(ActionEvent event) {
+    	Windows.showWindow(SceneNavigator.NEW_CEMETERY, "New cemetery", 400, 500);
     }
     
 }

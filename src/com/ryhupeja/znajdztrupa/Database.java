@@ -2,6 +2,8 @@ package com.ryhupeja.znajdztrupa;
 
 import java.sql.*;
 
+import javafx.scene.control.Alert.AlertType;
+
 public class Database {
 	private static Connection conn;
     private static Connection connectToServer() {
@@ -22,8 +24,22 @@ public class Database {
 			statement = conn.createStatement();
 			return statement.executeQuery(query);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Windows.showMessage("Błąd wewnętrzny: " + e.getMessage() + "\nSkontaktuj się z autorem.", AlertType.ERROR);
 			return null;
+		}
+    }
+    
+    public static int executeUpdate(String query)
+    {
+    	if (conn == null)
+    		conn = connectToServer();
+		Statement statement;
+		try {
+			statement = conn.createStatement();
+			return statement.executeUpdate(query);
+		} catch (SQLException e) {
+			Windows.showMessage("Błąd wewnętrzny: " + e.getMessage() + "\nSkontaktuj się z autorem.", AlertType.ERROR);
+			return -1;
 		}
     }
 }

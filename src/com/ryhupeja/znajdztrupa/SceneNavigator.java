@@ -7,9 +7,11 @@ import java.util.Stack;
 import com.ryhupeja.znajdztrupa.controllers.*;
 
 public class SceneNavigator {
-    public static final String MAIN    = "MainWindow.fxml";
-    public static final String LOGIN = "LoginWindow.fxml";
-    public static final String CEMETERY = "CemeteryWindow.fxml";
+	private static final String PATH = "scenes/";
+    public static final String MAIN    = PATH + "MainWindow.fxml";
+    public static final String LOGIN = PATH + "LoginWindow.fxml";
+    public static final String CEMETERY = PATH + "CemeteryWindow.fxml";
+    public static final String NEW_CEMETERY = PATH + "NewCemeteryWindow.fxml";
 //    public static final String VISTA_2 = "vista2.fxml";
 
 
