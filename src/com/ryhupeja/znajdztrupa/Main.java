@@ -14,7 +14,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(SceneNavigator.MAIN));
-			VBox root = (VBox)loader.load();
+			VBox root = loader.load();
 			
 			MainController mainController = loader.getController();
 

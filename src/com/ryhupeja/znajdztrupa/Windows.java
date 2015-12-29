@@ -21,9 +21,7 @@ public class Windows {
 	public static void showWindow(String fxml, String title, int width, int height) {
 		Parent root;
 		try {
-			root = FXMLLoader.load(SceneNavigator.class.getResource(
-                    fxml
-                ));
+			root = FXMLLoader.load(SceneNavigator.class.getResource(fxml));
 			Stage stage = new Stage();
 			stage.setTitle(title);
 			stage.setScene(new Scene(root, width, height));

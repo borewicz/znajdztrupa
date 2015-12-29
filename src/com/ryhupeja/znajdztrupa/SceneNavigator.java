@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Stack;
 
 import com.ryhupeja.znajdztrupa.controllers.*;
+import javafx.scene.Node;
 
 public class SceneNavigator {
 	private static final String PATH = "scenes/";
@@ -36,13 +37,7 @@ public class SceneNavigator {
     
     private static void loadVista(String fxml) {
         try {
-            mainController.setVista(
-                FXMLLoader.load(
-                    SceneNavigator.class.getResource(
-                        fxml
-                    )
-                )
-            );
+            mainController.setVista((Node) FXMLLoader.load(SceneNavigator.class.getResource(fxml)));
         } catch (IOException e) {
             e.printStackTrace();
         }
