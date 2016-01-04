@@ -1,5 +1,6 @@
 package com.ryhupeja.znajdztrupa;
 
+import com.sun.org.apache.xpath.internal.Arg;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.util.Stack;
@@ -26,18 +27,27 @@ public class SceneNavigator {
     public static void goBack() {
     	if (scenesHistory.size() > 1) {
     		scenesHistory.pop();
-    		loadVista(scenesHistory.peek());
+    		loadVista(scenesHistory.peek(), null);
     	}
     }
 
-    public static void loadScene(String fxml) {
+    public static void loadScene(String fxml, Object data) {
     	scenesHistory.push(fxml);
-    	loadVista(fxml);
+    	loadVista(fxml, data);
+    }
+
+    private static boolean isArgumentable(final Class c) {
+        return (Argumentable.class.isAssignableFrom(c));
     }
     
-    private static void loadVista(String fxml) {
+    private static void loadVista(String fxml, Object data) {
         try {
-            mainController.setVista((Node) FXMLLoader.load(SceneNavigator.class.getResource(fxml)));
+            FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource(fxml));
+            mainController.setVista((Node) loader.load());
+            if (isArgumentable(loader.getController().getClass())) {
+                Argumentable controller = loader.getController();
+                controller.loadData(data);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

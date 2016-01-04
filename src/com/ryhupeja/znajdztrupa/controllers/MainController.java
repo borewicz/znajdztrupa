@@ -13,9 +13,9 @@ public class MainController {
     public void setVista(Node node) {
         vistaHolder.getChildren().setAll(node);
     }
-    
+
     @FXML protected void goBackButtonClicked(ActionEvent event) {
-    	SceneNavigator.goBack();
+        SceneNavigator.goBack();
     }
 
 }

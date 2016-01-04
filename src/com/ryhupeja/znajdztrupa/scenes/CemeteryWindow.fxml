@@ -17,7 +17,8 @@
                <children>
                   <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" text="Login" />
                   <Button mnemonicParsing="false" onAction="#newCemeteryButtonClicked" text="Add new" />
-                  <Button mnemonicParsing="false" text="Delete" onAction="#deleteButtonClicked"/>
+                  <Button mnemonicParsing="false" onAction="#modifyCemeteryButtonClicked" text="Modify" />
+                  <Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete" />
                </children>
             </HBox>
             <ListView fx:id="cemeteryListView" prefHeight="200.0" prefWidth="200.0" />

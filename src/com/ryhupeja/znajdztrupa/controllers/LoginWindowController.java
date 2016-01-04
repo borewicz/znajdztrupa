@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 
 public class LoginWindowController {
 	@FXML private TextField loginTextField, passwordTextField;
-	
+
     @FXML protected void loginButtonClicked(ActionEvent event) {
 		try {
 			ResultSet result = Database.executeQuery("select * from users where username='" + 

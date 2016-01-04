@@ -17,15 +17,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
-public class CemeteryWindowController implements Initializable {
+public class CemeteryWindowController implements Argumentable {
 	@FXML private ListView<String> cemeteryListView;
 	@FXML private Button loginButton;
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-        update();
-	}
 
-    public void update()
+    public void loadData(Object data)
     {
         cemeteryListView.getItems().clear();
         ObservableList<String> list = FXCollections.observableArrayList();
@@ -40,16 +36,20 @@ public class CemeteryWindowController implements Initializable {
         cemeteryListView.setItems(list);
     }
     @FXML protected void loginButtonClicked(ActionEvent event) {
-    	SceneNavigator.loadScene(SceneNavigator.LOGIN);
+    	SceneNavigator.loadScene(SceneNavigator.LOGIN, null);
     }
     @FXML protected void newCemeteryButtonClicked(ActionEvent event) {
-    	Windows.showWindow(SceneNavigator.NEW_CEMETERY, "New cemetery", 400, 500);
+    	Windows.showWindow(SceneNavigator.NEW_CEMETERY, "New cemetery", 400, 500, null);
+    }
+
+    @FXML protected void modifyCemeteryButtonClicked(ActionEvent event) {
+        Windows.showWindow(SceneNavigator.NEW_CEMETERY, "Modify cemetery", 400, 500, cemeteryListView.getSelectionModel().getSelectedItem());
     }
 	@FXML protected void deleteButtonClicked(ActionEvent event) {
 		String name = cemeteryListView.getSelectionModel().getSelectedItem();
         if (name != null) {
             if (Database.executeUpdate("delete from cemetery where name=\"" + name + "\"") > 0) {
-                update();
+                loadData(null);
             }
         }
 	}
