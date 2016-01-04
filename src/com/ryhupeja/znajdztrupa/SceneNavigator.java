@@ -1,16 +1,16 @@
 package com.ryhupeja.znajdztrupa;
 
-import com.sun.org.apache.xpath.internal.Arg;
+import com.ryhupeja.znajdztrupa.controllers.Argumentable;
+import com.ryhupeja.znajdztrupa.controllers.MainController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+
 import java.io.IOException;
 import java.util.Stack;
 
-import com.ryhupeja.znajdztrupa.controllers.*;
-import javafx.scene.Node;
-
 public class SceneNavigator {
-	private static final String PATH = "scenes/";
-    public static final String MAIN    = PATH + "MainWindow.fxml";
+    private static final String PATH = "scenes/";
+    public static final String MAIN = PATH + "MainWindow.fxml";
     public static final String LOGIN = PATH + "LoginWindow.fxml";
     public static final String CEMETERY = PATH + "CemeteryWindow.fxml";
     public static final String NEW_CEMETERY = PATH + "NewCemeteryWindow.fxml";
@@ -21,25 +21,25 @@ public class SceneNavigator {
     private static Stack<String> scenesHistory = new Stack<String>();
 
     public static void setMainController(MainController mainController) {
-    	SceneNavigator.mainController = mainController;
+        SceneNavigator.mainController = mainController;
     }
-    
+
     public static void goBack() {
-    	if (scenesHistory.size() > 1) {
-    		scenesHistory.pop();
-    		loadVista(scenesHistory.peek(), null);
-    	}
+        if (scenesHistory.size() > 1) {
+            scenesHistory.pop();
+            loadVista(scenesHistory.peek(), null);
+        }
     }
 
     public static void loadScene(String fxml, Object data) {
-    	scenesHistory.push(fxml);
-    	loadVista(fxml, data);
+        scenesHistory.push(fxml);
+        loadVista(fxml, data);
     }
 
     private static boolean isArgumentable(final Class c) {
         return (Argumentable.class.isAssignableFrom(c));
     }
-    
+
     private static void loadVista(String fxml, Object data) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource(fxml));
