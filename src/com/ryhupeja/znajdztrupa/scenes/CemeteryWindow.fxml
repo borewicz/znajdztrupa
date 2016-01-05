@@ -18,7 +18,7 @@
                         <Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete"/>
                     </children>
                 </HBox>
-                <ListView fx:id="cemeteryListView" prefHeight="200.0" prefWidth="200.0"/>
+                <ListView fx:id="cemeteryListView" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#cemeteryItemClicked"/>
             </children>
         </VBox>
     </center>

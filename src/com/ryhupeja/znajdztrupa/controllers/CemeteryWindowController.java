@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -55,6 +56,13 @@ public class CemeteryWindowController implements Argumentable {
             if (Database.executeUpdate("delete from cemetery where name=\"" + name + "\"") > 0) {
                 loadData(null);
             }
+        }
+    }
+
+    @FXML
+    protected void cemeteryItemClicked(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryListView.getSelectionModel().getSelectedItem());
         }
     }
 

@@ -6,6 +6,7 @@ import java.sql.*;
 
 public class Database {
     private static Connection conn;
+    public static int loggedState = -1;
 
     private static Connection connectToServer() {
         try {

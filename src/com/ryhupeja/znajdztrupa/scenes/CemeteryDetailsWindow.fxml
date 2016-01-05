@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryhupeja.znajdztrupa.controllers.CemeteryDetailsWindowController">
+    <center>
+        <VBox>
+            <children>
+                <HBox>
+                    <children>
+                        <!--<Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked"-->
+                                <!--text="Login"/>-->
+                        <!--<Button mnemonicParsing="false" onAction="#newCemeteryButtonClicked" text="Add new"/>-->
+                        <!--<Button mnemonicParsing="false" onAction="#modifyCemeteryButtonClicked" text="Modify"/>-->
+                        <!--<Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete"/>-->
+                    </children>
+                </HBox>
+            <Label fx:id="nameLabel"/>
+                <!--<ListView fx:id="cemeteryListView" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#cemeteryItemClicked"/>-->
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

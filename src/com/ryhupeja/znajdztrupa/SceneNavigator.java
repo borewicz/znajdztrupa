@@ -14,6 +14,7 @@ public class SceneNavigator {
     public static final String LOGIN = PATH + "LoginWindow.fxml";
     public static final String CEMETERY = PATH + "CemeteryWindow.fxml";
     public static final String NEW_CEMETERY = PATH + "NewCemeteryWindow.fxml";
+    public static final String CEMETERY_DETAILS = PATH + "CemeteryDetailsWindow.fxml";
 //    public static final String VISTA_2 = "vista2.fxml";
 
 
@@ -36,6 +37,9 @@ public class SceneNavigator {
         loadVista(fxml, data);
     }
 
+    public static void updateLoggedState(String state) {
+        mainController.loggedLabel.setText(state);
+    }
     private static boolean isArgumentable(final Class c) {
         return (Argumentable.class.isAssignableFrom(c));
     }
@@ -52,5 +56,6 @@ public class SceneNavigator {
             e.printStackTrace();
         }
     }
+
 
 }

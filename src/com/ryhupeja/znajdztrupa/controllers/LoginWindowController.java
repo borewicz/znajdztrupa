@@ -1,6 +1,7 @@
 package com.ryhupeja.znajdztrupa.controllers;
 
 import com.ryhupeja.znajdztrupa.Database;
+import com.ryhupeja.znajdztrupa.SceneNavigator;
 import com.ryhupeja.znajdztrupa.Windows;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,8 +24,11 @@ public class LoginWindowController {
             if (!result.first()) {
                 Windows.showMessage("Nieprawidłowa nazwa użytkownika i/lub hasło. Sprawdź ponownie dane.", AlertType.ERROR);
             } else {
-                if (result.getInt(4) == 1)
-                    System.out.println("jest dobrze XD, id konta = " + result.getInt(1));
+                if (result.getInt(4) == 1) {
+                    Database.loggedState = result.getInt(1);
+                    SceneNavigator.updateLoggedState("User: " + Integer.toString(Database.loggedState));
+                    SceneNavigator.goBack();
+                }
                 else {
                     Windows.showMessage("Konto jest nieaktywne. Poczekaj parę minut lub napisz do administratora.", AlertType.ERROR);
                 }
