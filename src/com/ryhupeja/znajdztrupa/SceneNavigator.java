@@ -4,6 +4,7 @@ import com.ryhupeja.znajdztrupa.controllers.Argumentable;
 import com.ryhupeja.znajdztrupa.controllers.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.chart.PieChart;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -37,8 +38,15 @@ public class SceneNavigator {
         loadVista(fxml, data);
     }
 
-    public static void updateLoggedState(String state) {
-        mainController.loggedLabel.setText(state);
+    public static void updateLoggedState() {
+        if (Database.loggedUser != null) {
+            mainController.loggedLabel.setText("Hi, " + Database.loggedUser);
+            mainController.loginButton.setText("Log out");
+        }
+        else {
+            mainController.loggedLabel.setText("Not logged.");
+            mainController.loginButton.setText("Login");
+        }
     }
     private static boolean isArgumentable(final Class c) {
         return (Argumentable.class.isAssignableFrom(c));

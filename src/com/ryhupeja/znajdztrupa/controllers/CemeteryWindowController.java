@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +20,8 @@ public class CemeteryWindowController implements Argumentable {
     private ListView<String> cemeteryListView;
     @FXML
     private Button loginButton;
+    @FXML
+    private HBox buttonsBox;
 
     public void loadData(Object data) {
         cemeteryListView.getItems().clear();
@@ -32,6 +35,12 @@ public class CemeteryWindowController implements Argumentable {
             e.printStackTrace();
         }
         cemeteryListView.setItems(list);
+        if (Database.loggedUser == null) {
+            buttonsBox.setVisible(false);
+        }
+        else {
+            buttonsBox.setVisible(true);
+        }
     }
 
     @FXML

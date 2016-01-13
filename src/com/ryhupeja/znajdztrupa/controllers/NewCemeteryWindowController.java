@@ -1,6 +1,7 @@
 package com.ryhupeja.znajdztrupa.controllers;
 
 import com.ryhupeja.znajdztrupa.Database;
+import com.ryhupeja.znajdztrupa.SceneNavigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -47,6 +48,7 @@ public class NewCemeteryWindowController implements Argumentable {
         if (Database.executeUpdate(query) > 0) {
             Stage stage = (Stage) closeButton.getScene().getWindow();
             stage.close();
+            SceneNavigator.loadScene(SceneNavigator.CEMETERY, null);
         }
     }
 

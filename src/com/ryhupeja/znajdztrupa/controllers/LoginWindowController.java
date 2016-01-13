@@ -27,7 +27,7 @@ public class LoginWindowController {
                 if (result.getInt("active") == 1) {
                     Database.loggedUser = result.getString("nick");
                     Database.userType = result.getInt("type");
-                    SceneNavigator.updateLoggedState("Hi, " + Database.loggedUser);
+                    SceneNavigator.updateLoggedState();
                     SceneNavigator.goBack();
                 }
                 else {
