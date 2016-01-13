@@ -18,15 +18,16 @@ public class LoginWindowController {
     @FXML
     protected void loginButtonClicked(ActionEvent event) {
         try {
-            ResultSet result = Database.executeQuery("select * from users where username='" +
+            ResultSet result = Database.executeQuery("select * from users where nick='" +
                     loginTextField.getText() + "' and password='" +
                     passwordTextField.getText() + "'");
             if (!result.first()) {
                 Windows.showMessage("Nieprawidłowa nazwa użytkownika i/lub hasło. Sprawdź ponownie dane.", AlertType.ERROR);
             } else {
-                if (result.getInt(4) == 1) {
-                    Database.loggedState = result.getInt(1);
-                    SceneNavigator.updateLoggedState("User: " + Integer.toString(Database.loggedState));
+                if (result.getInt("active") == 1) {
+                    Database.loggedUser = result.getString("nick");
+                    Database.userType = result.getInt("type");
+                    SceneNavigator.updateLoggedState("Hi, " + Database.loggedUser);
                     SceneNavigator.goBack();
                 }
                 else {

@@ -23,7 +23,7 @@ public class CemeteryWindowController implements Argumentable {
     public void loadData(Object data) {
         cemeteryListView.getItems().clear();
         ObservableList<String> list = FXCollections.observableArrayList();
-        ResultSet result = Database.executeQuery("select name from cemetery");
+        ResultSet result = Database.executeQuery("select name from cemeteries");
         try {
             while (result.next()) {
                 list.add(result.getString(1));
@@ -53,7 +53,7 @@ public class CemeteryWindowController implements Argumentable {
     protected void deleteButtonClicked(ActionEvent event) {
         String name = cemeteryListView.getSelectionModel().getSelectedItem();
         if (name != null) {
-            if (Database.executeUpdate("delete from cemetery where name=\"" + name + "\"") > 0) {
+            if (Database.executeUpdate("delete from cemeteries where name=\"" + name + "\"") > 0) {
                 loadData(null);
             }
         }

@@ -15,15 +15,15 @@ public class NewCemeteryWindowController implements Argumentable {
     private Button closeButton;
     @FXML
     private TextField cemeteryNameTextField;
-    private int id = -1;
+    private String oldName;
 
     public void loadData(Object data) {
         if (data != null) {
-            ResultSet result = Database.executeQuery("select * from cemetery where name='" + (String) data + "' limit 1");
+            ResultSet result = Database.executeQuery("select * from cemeteries where name='" + (String) data + "' limit 1");
             try {
                 while (result.next()) {
-                    id = result.getInt(1);
-                    cemeteryNameTextField.setText(result.getString(2));
+                    oldName = result.getString(1);
+                    cemeteryNameTextField.setText(oldName);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -40,10 +40,10 @@ public class NewCemeteryWindowController implements Argumentable {
     @FXML
     protected void createButtonClicked(ActionEvent event) {
         String query;
-        if (id != -1)
-            query = "update cemetery set name='" + cemeteryNameTextField.getText() + "' where id=" + Integer.toString(id);
+        if (oldName != null)
+            query = "update cemeteries set name='" + cemeteryNameTextField.getText() + "' where name='" + oldName + "'";
         else
-            query = "insert into cemetery (name) values ('" + cemeteryNameTextField.getText() + "')";
+            query = "insert into cemeteries (name) values ('" + cemeteryNameTextField.getText() + "')";
         if (Database.executeUpdate(query) > 0) {
             Stage stage = (Stage) closeButton.getScene().getWindow();
             stage.close();
