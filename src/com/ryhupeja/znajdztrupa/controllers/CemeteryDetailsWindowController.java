@@ -14,9 +14,9 @@ import java.sql.SQLException;
 
 class Trup {
     private String description;
-    private int pesel;
+    private String pesel;
 
-    Trup(String description, int pesel) {
+    Trup(String description, String pesel) {
         this.description = description;
         this.pesel = pesel;
     }
@@ -25,7 +25,7 @@ class Trup {
         return description;
     }
 
-    public int getPesel() {
+    public String getPesel() {
         return pesel;
     }
 }
@@ -44,7 +44,7 @@ public class CemeteryDetailsWindowController implements Argumentable {
         try {
             while (result.next()) {
                 list.add(new Trup(result.getInt("x") + "," + result.getInt("y") + " - " + result.getString("name") +
-                        " " + result.getString("surname"), result.getInt("pesel")));
+                        " " + result.getString("surname"), result.getString("pesel")));
 //                list.add(result.getString(1));
             }
         } catch (SQLException e) {
