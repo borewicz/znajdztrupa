@@ -56,8 +56,7 @@ public class CemeteryDetailsWindowController implements Argumentable {
     @FXML
     protected void trupItemClicked(MouseEvent event) {
         if (event.getClickCount() == 2) {
-//            SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryListView.getSelectionModel().getSelectedItem());
-            System.out.println(((Trup)trupyListView.getSelectionModel().getSelectedItem()).getPesel());
+            SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS, ((Trup)trupyListView.getSelectionModel().getSelectedItem()).getPesel());
         }
     }
 }

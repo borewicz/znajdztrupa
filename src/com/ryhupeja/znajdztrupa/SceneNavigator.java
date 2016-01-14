@@ -4,7 +4,6 @@ import com.ryhupeja.znajdztrupa.controllers.Argumentable;
 import com.ryhupeja.znajdztrupa.controllers.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.chart.PieChart;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -16,6 +15,7 @@ public class SceneNavigator {
     public static final String CEMETERY = PATH + "CemeteryWindow.fxml";
     public static final String NEW_CEMETERY = PATH + "NewCemeteryWindow.fxml";
     public static final String CEMETERY_DETAILS = PATH + "CemeteryDetailsWindow.fxml";
+    public static final String TRUP_DETAILS = PATH + "TrupDetailWindow.fxml";
 //    public static final String VISTA_2 = "vista2.fxml";
 
 
