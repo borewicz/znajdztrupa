@@ -16,13 +16,13 @@ public class TrupDetailWindowController implements Argumentable {
     @FXML
     private Label nameLabel, surnameLabel, cemeteryLabel, diedLabel;
     @FXML
-    private Button likesButton;
+    private Button snitchesButton;
 
     private String pesel;
     private boolean liked;
 
     public void loadData(Object data) {
-        int likesCount = 0;
+        int snitchesCount = 0;
         pesel = (String) data;
 //        System.out.println(pesel);
         ResultSet result = Database.executeQuery(
@@ -31,8 +31,8 @@ public class TrupDetailWindowController implements Argumentable {
                         "inner join places p on p.trup_pesel=t.pesel " +
                         "inner join cemeteries c on p.cemetery_name=c.name " +
                         "where pesel='" + (String) data + "';");
-        ResultSet likes = Database.executeQuery(
-                "select * from likes where trupy_pesel='" + pesel + "'");
+        ResultSet snitches = Database.executeQuery(
+                "select * from snitches where trup_pesel='" + pesel + "'");
         try {
             while (result.next()) {
                 nameLabel.setText(result.getString("name"));
@@ -40,28 +40,28 @@ public class TrupDetailWindowController implements Argumentable {
                 diedLabel.setText(Integer.toString(result.getInt("died")));
                 cemeteryLabel.setText(result.getString("cemetery_name"));
             }
-            while (likes.next()) {
-                likesCount++;
-                if (likes.getString("users_nick").equals(Database.loggedUser))
+            while (snitches.next()) {
+                snitchesCount++;
+                if (snitches.getString("user_nick").equals(Database.loggedUser))
                     liked = true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        likesButton.setText(Integer.toString(likesCount));
+        snitchesButton.setText(Integer.toString(snitchesCount));
         if (Database.loggedUser == null)
-            likesButton.setVisible(false);
+            snitchesButton.setVisible(false);
     }
 
     @FXML
-    protected void likeButtonClicked(ActionEvent event) {
-        //insert into likes values ("jan", "2222");
-        //delete from likes where users_nick='jan' and trupy_pesel='2222';
+    protected void snitchButtonClicked(ActionEvent event) {
+        //insert into snitches values ("jan", "2222");
+        //delete from snitches where users_nick='jan' and trupy_pesel='2222';
         if (liked)
-            Database.executeUpdate(String.format("delete from likes where users_nick='%s' and trupy_pesel='%s'",
+            Database.executeUpdate(String.format("delete from snitches where user_nick='%s' and trup_pesel='%s'",
                     Database.loggedUser, pesel));
         else
-            Database.executeUpdate(String.format("insert into likes values ('%s', '%s');",
+            Database.executeUpdate(String.format("insert into snitches values ('%s', '%s');",
                     Database.loggedUser, pesel));
         liked = !liked;
         loadData(pesel);

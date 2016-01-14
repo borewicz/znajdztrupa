@@ -4,9 +4,28 @@ import com.ryhupeja.znajdztrupa.controllers.Argumentable;
 import com.ryhupeja.znajdztrupa.controllers.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.Stack;
+
+class SavedScene {
+    private String fxml;
+    private Object data;
+
+    public SavedScene(String fxml, Object data) {
+        this.fxml = fxml;
+        this.data = data;
+    }
+
+    public String getFxml() {
+        return fxml;
+    }
+
+    public Object getData() {
+        return data;
+    }
+}
 
 public class SceneNavigator {
     private static final String PATH = "scenes/";
@@ -20,7 +39,7 @@ public class SceneNavigator {
 
 
     private static MainController mainController;
-    private static Stack<String> scenesHistory = new Stack<String>();
+    private static Stack<SavedScene> scenesHistory = new Stack<>();
 
     public static void setMainController(MainController mainController) {
         SceneNavigator.mainController = mainController;
@@ -29,12 +48,12 @@ public class SceneNavigator {
     public static void goBack() {
         if (scenesHistory.size() > 1) {
             scenesHistory.pop();
-            loadVista(scenesHistory.peek(), null);
+            loadVista(scenesHistory.peek().getFxml(), scenesHistory.peek().getData());
         }
     }
 
     public static void loadScene(String fxml, Object data) {
-        scenesHistory.push(fxml);
+        scenesHistory.push(new SavedScene(fxml, data));
         loadVista(fxml, data);
     }
 
