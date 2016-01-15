@@ -62,7 +62,7 @@ public class CemeteryWindowController implements Argumentable {
     protected void deleteButtonClicked(ActionEvent event) {
         String name = cemeteryListView.getSelectionModel().getSelectedItem();
         if (name != null) {
-            if (Database.executeUpdate("delete from cemeteries where name=\"" + name + "\"") > 0) {
+            if (Database.executeUpdate(String.format("delete from cemeteries where name='%s'", name)) > 0) {
                 loadData(null);
             }
         }
@@ -70,7 +70,7 @@ public class CemeteryWindowController implements Argumentable {
 
     @FXML
     protected void cemeteryItemClicked(MouseEvent event) {
-        if (event.getClickCount() == 2) {
+        if ((event.getClickCount() == 2) && !(cemeteryListView.getSelectionModel().isEmpty())) {
             SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryListView.getSelectionModel().getSelectedItem());
         }
     }

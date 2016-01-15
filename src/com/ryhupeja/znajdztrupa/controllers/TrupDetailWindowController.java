@@ -24,7 +24,6 @@ public class TrupDetailWindowController implements Argumentable {
     public void loadData(Object data) {
         int snitchesCount = 0;
         pesel = (String) data;
-//        System.out.println(pesel);
         ResultSet result = Database.executeQuery(
                 "select t.name, surname, c.name as cemetery_name, pesel, died " +
                         "from trupy t " +
@@ -55,8 +54,6 @@ public class TrupDetailWindowController implements Argumentable {
 
     @FXML
     protected void snitchButtonClicked(ActionEvent event) {
-        //insert into snitches values ("jan", "2222");
-        //delete from snitches where users_nick='jan' and trupy_pesel='2222';
         if (liked)
             Database.executeUpdate(String.format("delete from snitches where user_nick='%s' and trup_pesel='%s'",
                     Database.loggedUser, pesel));

@@ -43,9 +43,12 @@ public class CemeteryDetailsWindowController implements Argumentable {
                 "where cemetery_name='" + (String) data + "'");
         try {
             while (result.next()) {
-                list.add(new Trup(result.getInt("x") + "," + result.getInt("y") + " - " + result.getString("name") +
-                        " " + result.getString("surname"), result.getString("pesel")));
-//                list.add(result.getString(1));
+                list.add(new Trup(String.format("%s, %s - %s %s",
+                        result.getInt("x"),
+                        result.getInt("y"),
+                        result.getString("name"),
+                        result.getString("surname")),
+                        result.getString("pesel")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,7 +58,7 @@ public class CemeteryDetailsWindowController implements Argumentable {
 
     @FXML
     protected void trupItemClicked(MouseEvent event) {
-        if (event.getClickCount() == 2) {
+        if ((event.getClickCount() == 2) && !(trupyListView.getSelectionModel().isEmpty())) {
             SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS, ((Trup)trupyListView.getSelectionModel().getSelectedItem()).getPesel());
         }
     }
