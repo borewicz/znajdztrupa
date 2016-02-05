@@ -16,7 +16,7 @@ public class TrupDetailWindowController implements Argumentable {
     @FXML
     private Label nameLabel, surnameLabel, cemeteryLabel, diedLabel;
     @FXML
-    private Button snitchesButton;
+    private Button snitchesButton, modifyButton, removeButton;
 
     private String pesel;
     private boolean liked;
@@ -48,8 +48,13 @@ public class TrupDetailWindowController implements Argumentable {
             e.printStackTrace();
         }
         snitchesButton.setText(Integer.toString(snitchesCount));
-        if (Database.loggedUser == null)
-            snitchesButton.setVisible(false);
+        if (Database.userType != -1) {
+            snitchesButton.setVisible(true);
+            if (Database.userType == 1) {
+                modifyButton.setVisible(true);
+                removeButton.setVisible(true);
+            }
+        }
     }
 
     @FXML

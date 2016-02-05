@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryhupeja.znajdztrupa.controllers.TrupDetailWindowController">
     <center>
         <VBox>
@@ -27,7 +29,13 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="snitchesButton" mnemonicParsing="false" onAction="#snitchButtonClicked" text="Like" />
+            <HBox>
+               <children>
+                  <Button fx:id="snitchesButton" mnemonicParsing="false" onAction="#snitchButtonClicked" text="Like" visible="false" />
+                  <Button fx:id="modifyButton" mnemonicParsing="false" text="Modify" visible="false" />
+                  <Button fx:id="removeButton" mnemonicParsing="false" text="Remove" visible="false" />
+               </children>
+            </HBox>
          </children>
          <opaqueInsets>
             <Insets />

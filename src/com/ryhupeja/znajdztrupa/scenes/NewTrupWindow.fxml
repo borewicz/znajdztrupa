@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryhupeja.znajdztrupa.controllers.NewTrupWindowController">
+    <bottom>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="PESEL:" />
+                <Button fx:id="closeButton" cancelButton="true" mnemonicParsing="false" onAction="#closeButtonClicked" text="Cancel" GridPane.rowIndex="8" />
+                <Button fx:id="createButton" defaultButton="true" mnemonicParsing="false" onAction="#createButtonClicked" text="Create" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                <TextField fx:id="peselTextField" GridPane.columnIndex="1" />
+                <Label text="Name:" GridPane.rowIndex="1" />
+                <Label text="Surname:" GridPane.rowIndex="2" />
+                <Label text="Born:" GridPane.rowIndex="3" />
+                <Label text="Died:" GridPane.rowIndex="4" />
+                <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="surnameTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <DatePicker fx:id="bornDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <DatePicker fx:id="diedDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Position X:" GridPane.rowIndex="5" />
+            <Label text="Position Y:" GridPane.rowIndex="6" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            </children>
+        </GridPane>
+    </bottom>
+</BorderPane>

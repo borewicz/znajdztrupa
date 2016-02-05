@@ -62,7 +62,8 @@ public class CemeteryWindowController implements Argumentable {
     protected void deleteButtonClicked(ActionEvent event) {
         String name = cemeteryListView.getSelectionModel().getSelectedItem();
         if (name != null) {
-            if (Database.executeUpdate(String.format("delete from cemeteries where name='%s'", name)) > 0) {
+            if ((Windows.showConfirmationMessage("Czy na pewno chcesz usunąć trupa?")) &&
+                    (Database.executeUpdate(String.format("delete from cemeteries where name='%s'", name)) > 0)) {
                 loadData(null);
             }
         }

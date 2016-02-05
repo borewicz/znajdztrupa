@@ -9,6 +9,8 @@ public class Database {
     public static String loggedUser;
     public static int userType = -1;
 
+    //TODO: singleton
+
     private static Connection connectToServer() {
         try {
             return DriverManager.getConnection("jdbc:mysql://localhost/trupy", "root", "Dupa1234");

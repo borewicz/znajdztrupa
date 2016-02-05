@@ -5,15 +5,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryhupeja.znajdztrupa.controllers.CemeteryDetailsWindowController">
     <center>
         <VBox>
             <children>
                 <HBox>
                     <children>
-                        <!--<Button mnemonicParsing="false" onAction="#newCemeteryButtonClicked" text="Add new"/>-->
-                        <!--<Button mnemonicParsing="false" onAction="#modifyCemeteryButtonClicked" text="Modify"/>-->
-                        <!--<Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete"/>-->
+                        <Button mnemonicParsing="false" onAction="#newTrupButtonClicked" text="Add new" fx:id="newTrupButton" visible="false"/>
+                        <Button mnemonicParsing="false" onAction="#modifyButtonClicked" text="Modify" fx:id="modifyButton" visible="false"/>
+                        <Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete" fx:id="removeButton" visible="false"/>
                     </children>
                 </HBox>
             <Label fx:id="nameLabel"/>
