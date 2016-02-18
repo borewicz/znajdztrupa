@@ -27,7 +27,7 @@ public class TrupDetailWindowController implements Argumentable {
         ResultSet result = Database.executeQuery(
                 "select t.name, surname, c.name as cemetery_name, pesel, died " +
                         "from trupy t " +
-                        "inner join places p on p.trup_pesel=t.pesel " +
+                        "inner join places p on p.trupy_pesel=t.pesel " +
                         "inner join cemeteries c on p.cemetery_name=c.name " +
                         "where pesel='" + (String) data + "';");
         ResultSet snitches = Database.executeQuery(

@@ -40,8 +40,8 @@
                 <DatePicker fx:id="diedDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Position X:" GridPane.rowIndex="5" />
             <Label text="Position Y:" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="positionXTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="positionYTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             </children>
         </GridPane>
     </bottom>

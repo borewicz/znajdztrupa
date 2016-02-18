@@ -46,13 +46,13 @@ public class CemeteryDetailsWindowController implements Argumentable {
     public void loadData(Object data) {
         trupyListView.getItems().clear();
         ObservableList<Trup> list = FXCollections.observableArrayList();
-        ResultSet result = Database.executeQuery("select x,y,name,surname,pesel from places p inner join trupy t on p.trup_pesel=t.pesel " +
+        ResultSet result = Database.executeQuery("select name,surname,pesel from places p inner join trupy t on p.trupy_pesel=t.pesel " +
                 "where cemetery_name='" + (String) data + "'");
         try {
             while (result.next()) {
-                list.add(new Trup(String.format("%s, %s - %s %s",
-                        result.getInt("x"),
-                        result.getInt("y"),
+                list.add(new Trup(String.format("%s %s",
+//                        result.getInt("x"),
+//                        result.getInt("y"),
                         result.getString("name"),
                         result.getString("surname")),
                         result.getString("pesel")));
