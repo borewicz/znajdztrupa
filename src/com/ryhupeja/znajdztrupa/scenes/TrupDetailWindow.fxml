@@ -1,48 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryhupeja.znajdztrupa.controllers.TrupDetailWindowController">
     <center>
         <VBox>
-         <children>
-            <Label fx:id="nameLabel" text="">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="surnameLabel" text="">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="diedLabel" text="">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="cemeteryLabel" text="">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Label>
-            <HBox>
+            <children>
+                <Label fx:id="nameLabel" text="">
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="surnameLabel" text="">
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="diedLabel" text="">
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="cemeteryLabel" text="">
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </Label>
+                <HBox>
+                    <children>
+                        <Button fx:id="snitchesButton" mnemonicParsing="false" onAction="#snitchButtonClicked" text="Like" visible="false" />
+                        <Button fx:id="modifyButton" mnemonicParsing="false" text="Modify" visible="false" />
+                        <Button fx:id="removeButton" mnemonicParsing="false" text="Remove" visible="false" />
+                        <Button fx:id="uploadImageButton" mnemonicParsing="false" onAction="#uploadButtonClicked" text="Upload image" visible="true" />
+                    </children>
+                </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="snitchesButton" mnemonicParsing="false" onAction="#snitchButtonClicked" text="Like" visible="false" />
-                  <Button fx:id="modifyButton" mnemonicParsing="false" text="Modify" visible="false" />
-                  <Button fx:id="removeButton" mnemonicParsing="false" text="Remove" visible="false" />
+                  <ListView prefHeight="150.0" prefWidth="133.0" fx:id="photosListView" onMouseClicked="#photoClicked"/>
+                  <ImageView fitHeight="150.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" fx:id="imageView"/>
                </children>
             </HBox>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
         </VBox>
     </center>
 </BorderPane>

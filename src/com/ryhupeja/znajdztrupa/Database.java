@@ -20,6 +20,15 @@ public class Database {
         }
     }
 
+    public static PreparedStatement prepareStatement(String sql) {
+        try {
+            return conn.prepareStatement(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static ResultSet executeQuery(String query) {
         if (conn == null)
             conn = connectToServer();

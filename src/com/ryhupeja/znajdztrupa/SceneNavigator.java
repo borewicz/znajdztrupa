@@ -4,7 +4,6 @@ import com.ryhupeja.znajdztrupa.controllers.Argumentable;
 import com.ryhupeja.znajdztrupa.controllers.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -36,11 +35,12 @@ public class SceneNavigator {
     public static final String CEMETERY_DETAILS = PATH + "CemeteryDetailsWindow.fxml";
     public static final String NEW_TRUP = PATH + "NewTrupWindow.fxml";
     public static final String TRUP_DETAILS = PATH + "TrupDetailWindow.fxml";
+    public static final String UPLOAD_IMAGE = PATH + "UploadImageWindow.fxml";
 //    public static final String VISTA_2 = "vista2.fxml";
 
 
     private static MainController mainController;
-    private static Stack<SavedScene> scenesHistory = new Stack<>();
+    private static Stack<SavedScene> scenesHistory = new Stack<SavedScene>();
 
     public static void setMainController(MainController mainController) {
         SceneNavigator.mainController = mainController;
