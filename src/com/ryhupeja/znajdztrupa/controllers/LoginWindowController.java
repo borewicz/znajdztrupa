@@ -39,6 +39,7 @@ public class LoginWindowController {
             if (!result.first()) {
                 Windows.showMessage("Nieprawidłowa nazwa użytkownika i/lub hasło. Sprawdź ponownie dane.", AlertType.ERROR);
             } else {
+                System.out.println("beka");
                 if (result.getInt("active") == 1) {
                     Database.loggedUser = result.getString("nick");
                     Database.userType = result.getInt("type");
