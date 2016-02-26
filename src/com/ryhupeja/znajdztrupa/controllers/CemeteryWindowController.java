@@ -35,11 +35,11 @@ public class CemeteryWindowController implements Argumentable {
             e.printStackTrace();
         }
         cemeteryListView.setItems(list);
-        if (Database.loggedUser == null) {
-            buttonsBox.setVisible(false);
+        if (Database.userType == 1) {
+            buttonsBox.setVisible(true);
         }
         else {
-            buttonsBox.setVisible(true);
+            buttonsBox.setVisible(false);
         }
     }
 

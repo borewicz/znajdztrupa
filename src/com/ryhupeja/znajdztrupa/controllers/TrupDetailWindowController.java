@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -49,7 +50,7 @@ public class TrupDetailWindowController implements Argumentable {
                         "from trupy t " +
                         "inner join places p on p.trupy_pesel=t.pesel " +
                         "inner join cemeteries c on p.cemetery_name=c.name " +
-                        "where pesel='" + (String) data + "';");
+                        "where pesel='" + (String) data + "'");
         ResultSet snitches = Database.executeQuery(
                 "select * from snitches where trup_pesel='" + pesel + "'");
         ResultSet photos = Database.executeQuery(
@@ -58,7 +59,7 @@ public class TrupDetailWindowController implements Argumentable {
             while (result.next()) {
                 nameLabel.setText(result.getString("name"));
                 surnameLabel.setText(result.getString("surname"));
-                diedLabel.setText(Integer.toString(result.getInt("died")));
+//                diedLabel.setText(Integer.toString(result.getInt("died")));
                 cemeteryLabel.setText(result.getString("cemetery_name"));
             }
             while (snitches.next()) {
@@ -89,7 +90,7 @@ public class TrupDetailWindowController implements Argumentable {
             Database.executeUpdate(String.format("delete from snitches where user_nick='%s' and trup_pesel='%s'",
                     Database.loggedUser, pesel));
         else
-            Database.executeUpdate(String.format("insert into snitches values ('%s', '%s');",
+            Database.executeUpdate(String.format("insert into snitches values ('%s', '%s')",
                     Database.loggedUser, pesel));
         liked = !liked;
         loadData(pesel);
@@ -116,11 +117,15 @@ public class TrupDetailWindowController implements Argumentable {
     protected void photoClicked(MouseEvent event) {
         if (!(photosListView.getSelectionModel().isEmpty())) {
             ResultSet result = Database.executeQuery(
-                    String.format("select image from photos where trupy_pesel=\'%s\' and title=\'%s\';",
+                    String.format("select image from photos where trupy_pesel=\'%s\' and title=\'%s\'",
                             pesel, photosListView.getSelectionModel().getSelectedItem()));
             try {
                 while (result.next()) {
-                    byte[] bytes = result.getBytes(1);
+                    Blob blob = result.getBlob(1);
+                    int blobLength = (int) blob.length();
+                    byte[] bytes = blob.getBytes(1, blobLength);
+                    blob.free();
+//                    byte[] bytes = result.getBytes(1);
                     imageView.setImage(convertToJavaFXImage(bytes, 200, 200));
                 }
             } catch (SQLException e) {

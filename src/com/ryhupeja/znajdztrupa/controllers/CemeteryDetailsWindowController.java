@@ -61,7 +61,7 @@ public class CemeteryDetailsWindowController implements Argumentable {
             e.printStackTrace();
         }
         trupyListView.setItems(list);
-        if (Database.userType == 2) {
+        if (Database.userType == 1) {
             modifyButton.setVisible(true);
             removeButton.setVisible(true);
             newTrupButton.setVisible(true);

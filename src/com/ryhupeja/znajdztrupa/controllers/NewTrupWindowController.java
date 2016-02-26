@@ -1,9 +1,6 @@
 package com.ryhupeja.znajdztrupa.controllers;
 
 import com.ryhupeja.znajdztrupa.Database;
-import com.ryhupeja.znajdztrupa.NumberTextField;
-import com.ryhupeja.znajdztrupa.SceneNavigator;
-import com.ryhupeja.znajdztrupa.Windows;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -98,7 +95,7 @@ public class NewTrupWindowController implements Argumentable {
 
     private boolean checkIfFull()
     {
-        String countQuery = String.format("select count(*) from places where cemetery_name=\'%s\';",
+        String countQuery = String.format("select count(*) from places where cemetery_name='%s'",
                 cemeteryName);
         ResultSet countResult = Database.executeQuery(countQuery);
         try {
@@ -116,7 +113,7 @@ public class NewTrupWindowController implements Argumentable {
     private boolean addPlace(int x, int y) {
         //jak nie ma to utworzy
 
-        String query = String.format("insert into places values (%d, %d, \'%s\', NULL)",
+        String query = String.format("insert into places values (%d, %d, '%s', NULL)",
                 Integer.parseInt(positionXTextField.getText()),
                 Integer.parseInt(positionXTextField.getText()),
                 cemeteryName
@@ -136,14 +133,14 @@ public class NewTrupWindowController implements Argumentable {
             return;
         }
         if (addPlace(x, y)) {
-            String addTrupQuery = String.format("insert into trupy values (%s, \"%s\", \"%s\", \"%s\", \"%s\")",
+            String addTrupQuery = String.format("insert into trupy values (%s, '%s', '%s', '%s', '%s')",
                     peselTextField.getText(),
                     nameTextField.getText(),
                     surnameTextField.getText(),
                     bornDatePicker.getValue() != null ? bornDatePicker.getValue() : "1970-01-01",
                     diedDatePicker.getValue());
-            String updatePlaceQuery = String.format("update places set trupy_pesel=\'%s\' where " +
-                    "x=%d and y=%d and cemetery_name=\'%s\';", peselTextField.getText(), x, y, cemeteryName);
+            String updatePlaceQuery = String.format("update places set trupy_pesel='%s' where " +
+                    "x=%d and y=%d and cemetery_name='%s'", peselTextField.getText(), x, y, cemeteryName);
             if ((Database.executeUpdate(addTrupQuery) > 0) && (Database.executeUpdate(updatePlaceQuery) > 0)) {
                 System.out.println("jest fajność");
             }

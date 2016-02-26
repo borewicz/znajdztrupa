@@ -47,6 +47,7 @@ public class Database {
     }
 
     public static int executeUpdate(String query) {
+        System.out.println(query);
         if (conn == null)
             conn = connectToServer();
         Statement statement;
