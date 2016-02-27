@@ -33,13 +33,13 @@
                         <Button fx:id="snitchesButton" mnemonicParsing="false" onAction="#snitchButtonClicked" text="Like" visible="false" />
                         <Button fx:id="modifyButton" mnemonicParsing="false" text="Modify" visible="false" />
                         <Button fx:id="removeButton" mnemonicParsing="false" text="Remove" visible="false" />
-                        <Button fx:id="uploadImageButton" mnemonicParsing="false" onAction="#uploadButtonClicked" text="Upload image" visible="true" />
+                        <Button fx:id="uploadImageButton" mnemonicParsing="false" onAction="#uploadButtonClicked" text="Upload image" visible="false" />
                     </children>
                 </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ListView prefHeight="150.0" prefWidth="133.0" fx:id="photosListView" onMouseClicked="#photoClicked"/>
-                  <ImageView fitHeight="150.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" fx:id="imageView"/>
+                  <ListView fx:id="photosListView" onMouseClicked="#photoClicked" prefHeight="150.0" prefWidth="133.0" />
+                  <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
             </children>

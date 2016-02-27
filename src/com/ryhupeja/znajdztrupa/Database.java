@@ -1,7 +1,5 @@
 package com.ryhupeja.znajdztrupa;
 
-import javafx.scene.control.Alert.AlertType;
-
 import java.sql.*;
 
 public class Database {
@@ -41,7 +39,8 @@ public class Database {
             statement = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             return statement.executeQuery(query);
         } catch (SQLException e) {
-            Windows.showMessage("Błąd wewnętrzny: " + e.getMessage() + "\nSkontaktuj się z autorem.", AlertType.ERROR);
+//            Windows.showMessage("Błąd wewnętrzny: " + e.getMessage() + "\nSkontaktuj się z autorem.", AlertType.ERROR);
+            System.out.println("executeQuery(): " + e.getMessage());
             return null;
         }
     }
@@ -55,7 +54,8 @@ public class Database {
             statement = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             return statement.executeUpdate(query);
         } catch (SQLException e) {
-            Windows.showMessage("Błąd wewnętrzny: " + e.getMessage() + "\nSkontaktuj się z autorem.", AlertType.ERROR);
+//            Windows.showMessage("Błąd wewnętrzny: " + e.getMessage() + "\nSkontaktuj się z autorem.", AlertType.ERROR);
+            System.out.println("executeUpdate(): " + e.getMessage());
             return -1;
         }
     }

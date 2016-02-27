@@ -8,9 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class NewCemeteryWindowController implements Argumentable {
     @FXML
     private Button closeButton;
@@ -19,8 +16,9 @@ public class NewCemeteryWindowController implements Argumentable {
     private String oldName;
 
     public void loadData(Object data) {
+        /*
         if (data != null) {
-            ResultSet result = Database.executeQuery("select * from cemeteries where name='" + (String) data + "' limit 1");
+            ResultSet result = Database.executeQuery("select * from cemeteries where name='" + (String) data + "'");
             try {
                 while (result.next()) {
                     oldName = result.getString(1);
@@ -30,6 +28,7 @@ public class NewCemeteryWindowController implements Argumentable {
                 e.printStackTrace();
             }
         }
+        */
     }
 
     @FXML
@@ -40,11 +39,10 @@ public class NewCemeteryWindowController implements Argumentable {
 
     @FXML
     protected void createButtonClicked(ActionEvent event) {
-        String query;
-        if (oldName != null)
-            query = "update cemeteries set name='" + cemeteryNameTextField.getText() + "' where name='" + oldName + "'";
-        else
-            query = "insert into cemeteries (name) values ('" + cemeteryNameTextField.getText() + "')";
+//        if (oldName != null)
+//            query = "update cemeteries set name='" + cemeteryNameTextField.getText() + "' where name='" + oldName + "'";
+//        else
+        String query = "insert into cemeteries (name) values ('" + cemeteryNameTextField.getText() + "')";
         if (Database.executeUpdate(query) > 0) {
             Stage stage = (Stage) closeButton.getScene().getWindow();
             stage.close();

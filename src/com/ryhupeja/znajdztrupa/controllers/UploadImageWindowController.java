@@ -1,11 +1,9 @@
 package com.ryhupeja.znajdztrupa.controllers;
 
 import com.ryhupeja.znajdztrupa.Database;
-import com.ryhupeja.znajdztrupa.Windows;
+import com.ryhupeja.znajdztrupa.SceneNavigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -22,8 +20,6 @@ import java.sql.SQLException;
  */
 public class UploadImageWindowController implements Argumentable {
     @FXML
-    private Button closeButton;
-    @FXML
     private TextField descriptionTextField;
     @FXML
     private Label fileNameLabel;
@@ -39,13 +35,13 @@ public class UploadImageWindowController implements Argumentable {
 
     @FXML
     protected void closeButtonClicked(ActionEvent event) {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
+        Stage stage = (Stage) descriptionTextField.getScene().getWindow();
         stage.close();
     }
 
     @FXML
     private void browseButtonClicked() {
-        File file = fileChooser.showOpenDialog(closeButton.getScene().getWindow());
+        File file = fileChooser.showOpenDialog(descriptionTextField.getScene().getWindow());
         if (file != null) {
             filePath = file.getAbsolutePath();
             fileNameLabel.setText(file.getName());
@@ -54,8 +50,6 @@ public class UploadImageWindowController implements Argumentable {
 
     @FXML
     protected void uploadButtonClicked(ActionEvent event) {
-        Windows.showMessage(filePath, Alert.AlertType.INFORMATION);
-
         String sql = "insert into photos values (?, ?, ?)";
         File file = new File(filePath);
         FileInputStream input = null;
@@ -73,6 +67,10 @@ public class UploadImageWindowController implements Argumentable {
                 statement.setString(2, descriptionTextField.getText());
                 statement.setString(3, pesel);
                 statement.executeUpdate();
+                Stage stage = (Stage) descriptionTextField.getScene().getWindow();
+                stage.close();
+                SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS, pesel);
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }

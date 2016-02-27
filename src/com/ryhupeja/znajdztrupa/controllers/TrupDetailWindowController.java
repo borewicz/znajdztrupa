@@ -31,7 +31,7 @@ public class TrupDetailWindowController implements Argumentable {
     @FXML
     private Label nameLabel, surnameLabel, cemeteryLabel, diedLabel;
     @FXML
-    private Button snitchesButton, modifyButton, removeButton;
+    private Button snitchesButton, modifyButton, removeButton, uploadImageButton;
     @FXML
     private ListView<String> photosListView;
     @FXML
@@ -59,7 +59,7 @@ public class TrupDetailWindowController implements Argumentable {
             while (result.next()) {
                 nameLabel.setText(result.getString("name"));
                 surnameLabel.setText(result.getString("surname"));
-//                diedLabel.setText(Integer.toString(result.getInt("died")));
+                diedLabel.setText(Integer.toString(result.getInt("died")));
                 cemeteryLabel.setText(result.getString("cemetery_name"));
             }
             while (snitches.next()) {
@@ -79,6 +79,7 @@ public class TrupDetailWindowController implements Argumentable {
             if (Database.userType == 1) {
                 modifyButton.setVisible(true);
                 removeButton.setVisible(true);
+                uploadImageButton.setVisible(true);
             }
         }
         photosListView.setItems(list);

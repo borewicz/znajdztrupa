@@ -7,10 +7,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.util.Pair;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,7 +40,7 @@ public class CemeteryDetailsWindowController implements Argumentable {
     @FXML
     private ListView<Trup> trupyListView;
     @FXML
-    private Button newTrupButton, modifyButton, removeButton;
+    private HBox buttonsBox;
 
     private String cemeteryName;
 
@@ -62,21 +63,21 @@ public class CemeteryDetailsWindowController implements Argumentable {
         }
         trupyListView.setItems(list);
         if (Database.userType == 1) {
-            modifyButton.setVisible(true);
-            removeButton.setVisible(true);
-            newTrupButton.setVisible(true);
+            buttonsBox.setVisible(true);
         }
         cemeteryName = (String)data;
     }
 
     @FXML
     protected void newTrupButtonClicked(ActionEvent event) {
-        Windows.showWindow(SceneNavigator.NEW_TRUP, "New trup", 400, 500, cemeteryName);
+        Windows.showWindow(SceneNavigator.NEW_TRUP, "New trup", 400, 500,
+                new Pair<String, String>(cemeteryName, null));
     }
 
     @FXML
     protected void modifyButtonClicked(ActionEvent event) {
-//        Windows.showWindow(SceneNavigator.NEW_TRUP, "Modify trup", 400, 500, trupyListView.getSelectionModel().getSelectedItem());
+        Windows.showWindow(SceneNavigator.NEW_TRUP, "Modify trup", 400, 500,
+                new Pair<String, String>(cemeteryName, trupyListView.getSelectionModel().getSelectedItem().getPesel()));
     }
 
     @FXML
@@ -84,7 +85,7 @@ public class CemeteryDetailsWindowController implements Argumentable {
         String pesel = trupyListView.getSelectionModel().getSelectedItem().getPesel();
         if (pesel != null) {
             if ((Windows.showConfirmationMessage("Czy na pewno chcesz usunąć trupa?")) &&
-                    (Database.executeUpdate(String.format("delete from cemeteries where name='%s'", pesel)) > 0)) {
+                    (Database.executeUpdate(String.format("delete from trupy where pesel='%s'", pesel)) > 0)) {
                 loadData(null);
             }
         }
@@ -93,7 +94,8 @@ public class CemeteryDetailsWindowController implements Argumentable {
     @FXML
     protected void trupItemClicked(MouseEvent event) {
         if ((event.getClickCount() == 2) && !(trupyListView.getSelectionModel().isEmpty())) {
-            SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS, ((Trup)trupyListView.getSelectionModel().getSelectedItem()).getPesel());
+            SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS,
+                    ((Trup)trupyListView.getSelectionModel().getSelectedItem()).getPesel());
         }
     }
 }

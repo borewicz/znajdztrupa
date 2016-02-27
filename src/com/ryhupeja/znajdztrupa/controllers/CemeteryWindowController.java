@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -18,8 +17,8 @@ import java.sql.SQLException;
 public class CemeteryWindowController implements Argumentable {
     @FXML
     private ListView<String> cemeteryListView;
-    @FXML
-    private Button loginButton;
+//    @FXML
+//    private Button loginButton;
     @FXML
     private HBox buttonsBox;
 
@@ -53,10 +52,12 @@ public class CemeteryWindowController implements Argumentable {
         Windows.showWindow(SceneNavigator.NEW_CEMETERY, "New cemetery", 400, 500, null);
     }
 
+    /*
     @FXML
     protected void modifyCemeteryButtonClicked(ActionEvent event) {
         Windows.showWindow(SceneNavigator.NEW_CEMETERY, "Modify cemetery", 400, 500, cemeteryListView.getSelectionModel().getSelectedItem());
     }
+    */
 
     @FXML
     protected void deleteButtonClicked(ActionEvent event) {
