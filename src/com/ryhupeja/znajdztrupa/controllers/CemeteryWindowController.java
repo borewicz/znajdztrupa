@@ -49,7 +49,7 @@ public class CemeteryWindowController implements Argumentable {
 
     @FXML
     protected void newCemeteryButtonClicked(ActionEvent event) {
-        Windows.showWindow(SceneNavigator.NEW_CEMETERY, "New cemetery", 400, 500, null);
+        Windows.showWindow(SceneNavigator.NEW_CEMETERY, "Nowy cmentarz", 300, 150, null);
     }
 
     /*
@@ -63,7 +63,8 @@ public class CemeteryWindowController implements Argumentable {
     protected void deleteButtonClicked(ActionEvent event) {
         String name = cemeteryListView.getSelectionModel().getSelectedItem();
         if (name != null) {
-            if ((Windows.showConfirmationMessage("Czy na pewno chcesz usunąć trupa?")) &&
+            if ((Windows.showConfirmationMessage("Zostaną usunięte wszystkie trupy związane z tym cmentarzem.\n" +
+                    "Czy na pewno chcesz go usunąć?")) &&
                     (Database.executeUpdate(String.format("delete from cemeteries where name='%s'", name)) > 0)) {
                 loadData(null);
             }

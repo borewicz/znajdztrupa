@@ -65,18 +65,20 @@ public class CemeteryDetailsWindowController implements Argumentable {
         if (Database.userType == 1) {
             buttonsBox.setVisible(true);
         }
+        else
+            buttonsBox.setVisible(false);
         cemeteryName = (String)data;
     }
 
     @FXML
     protected void newTrupButtonClicked(ActionEvent event) {
-        Windows.showWindow(SceneNavigator.NEW_TRUP, "New trup", 400, 500,
+        Windows.showWindow(SceneNavigator.NEW_TRUP, "Dodaj trupa", 400, 300,
                 new Pair<String, String>(cemeteryName, null));
     }
 
     @FXML
     protected void modifyButtonClicked(ActionEvent event) {
-        Windows.showWindow(SceneNavigator.NEW_TRUP, "Modify trup", 400, 500,
+        Windows.showWindow(SceneNavigator.NEW_TRUP, "Edytuj trupa", 400, 300,
                 new Pair<String, String>(cemeteryName, trupyListView.getSelectionModel().getSelectedItem().getPesel()));
     }
 
@@ -84,7 +86,8 @@ public class CemeteryDetailsWindowController implements Argumentable {
     protected void deleteButtonClicked(ActionEvent event) {
         String pesel = trupyListView.getSelectionModel().getSelectedItem().getPesel();
         if (pesel != null) {
-            if ((Windows.showConfirmationMessage("Czy na pewno chcesz usunąć trupa?")) &&
+            if ((Windows.showConfirmationMessage("Wszystkie elementy związane z trupem (np. zdjęcia) zostaną usunięte.\n" +
+                    "Czy na pewno chcesz usunąć trupa?")) &&
                     (Database.executeUpdate(String.format("delete from trupy where pesel='%s'", pesel)) > 0)) {
                 loadData(null);
             }

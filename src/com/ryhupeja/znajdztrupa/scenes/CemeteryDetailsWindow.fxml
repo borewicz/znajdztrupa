@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -10,13 +11,12 @@
             <children>
                 <HBox fx:id="buttonsBox">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#newTrupButtonClicked" text="Add new" fx:id="newTrupButton"/>
-                        <Button mnemonicParsing="false" onAction="#modifyButtonClicked" text="Modify" fx:id="modifyButton"/>
-                        <Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete" fx:id="removeButton"/>
+                        <Button fx:id="newTrupButton" mnemonicParsing="false" onAction="#newTrupButtonClicked" text="Dodaj trupa" />
+                        <Button fx:id="modifyButton" mnemonicParsing="false" onAction="#modifyButtonClicked" text="Edytuj" />
+                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#deleteButtonClicked" text="Usuń" />
                     </children>
                 </HBox>
-            <Label fx:id="nameLabel"/>
-                <ListView fx:id="trupyListView" VBox.vgrow="ALWAYS" onMouseClicked="#trupItemClicked" />
+                <ListView fx:id="trupyListView" onMouseClicked="#trupItemClicked" VBox.vgrow="ALWAYS" />
             </children>
         </VBox>
     </center>

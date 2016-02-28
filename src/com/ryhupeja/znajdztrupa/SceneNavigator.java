@@ -60,12 +60,12 @@ public class SceneNavigator {
 
     public static void updateLoggedState() {
         if (Database.loggedUser != null) {
-            mainController.loggedLabel.setText("Hi, " + Database.loggedUser);
-            mainController.loginButton.setText("Log out");
+            mainController.loggedLabel.setText("Cześć, " + Database.loggedUser + "!");
+            mainController.loginButton.setText("Wyloguj");
         }
         else {
-            mainController.loggedLabel.setText("Not logged.");
-            mainController.loginButton.setText("Login");
+            mainController.loggedLabel.setText("");
+            mainController.loginButton.setText("Zaloguj się");
         }
     }
     private static boolean isArgumentable(final Class c) {

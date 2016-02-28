@@ -6,7 +6,6 @@ import com.ryhupeja.znajdztrupa.Windows;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Pair;
@@ -15,8 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class NewTrupWindowController implements Argumentable {
-    @FXML
-    private Button closeButton;
     @FXML
     private TextField nameTextField, surnameTextField, bornTextField, diedTextField,
             peselTextField, positionXTextField, positionYTextField;
@@ -38,20 +35,14 @@ public class NewTrupWindowController implements Argumentable {
                         if (result.getInt(4) != -1)
                             bornTextField.setText(Integer.toString(result.getInt(4)));
                         diedTextField.setText(Integer.toString(result.getInt(5)));
-                        positionXTextField.setEditable(false);
-                        positionYTextField.setEditable(false);
-                        peselTextField.setEditable(false);
+                        positionXTextField.setDisable(true);
+                        positionYTextField.setDisable(true);
+                        peselTextField.setDisable(true);
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
-    }
-
-    @FXML
-    protected void closeButtonClicked(ActionEvent event) {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
     }
 
     private boolean checkIfFull()
@@ -97,7 +88,7 @@ public class NewTrupWindowController implements Argumentable {
                     diedTextField.getText(),
                     pesel);
             if (Database.executeUpdate(updateQuery) > 0) {
-                Stage stage = (Stage) closeButton.getScene().getWindow();
+                Stage stage = (Stage) peselTextField.getScene().getWindow();
                 stage.close();
                 SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryName);
             }
@@ -119,7 +110,7 @@ public class NewTrupWindowController implements Argumentable {
                 String updatePlaceQuery = String.format("update places set trupy_pesel='%s' where " +
                         "x=%d and y=%d and cemetery_name='%s'", peselTextField.getText(), x, y, cemeteryName);
                 if ((Database.executeUpdate(addTrupQuery) > 0) && (Database.executeUpdate(updatePlaceQuery) > 0)) {
-                    Stage stage = (Stage) closeButton.getScene().getWindow();
+                    Stage stage = (Stage) peselTextField.getScene().getWindow();
                     stage.close();
                     SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryName);
                 } else {

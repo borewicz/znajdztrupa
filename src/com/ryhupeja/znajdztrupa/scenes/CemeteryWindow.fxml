@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.VBox?>
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryhupeja.znajdztrupa.controllers.CemeteryWindowController">
     <center>
-        <VBox >
+        <VBox>
             <children>
                 <HBox fx:id="buttonsBox">
                     <children>
                         <!--<Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" text="Login" />-->
-                        <Button mnemonicParsing="false" onAction="#newCemeteryButtonClicked" text="Add new" />
+                        <Button mnemonicParsing="false" onAction="#newCemeteryButtonClicked" text="Nowy cmentarz" />
                         <!--<Button mnemonicParsing="false" onAction="#modifyCemeteryButtonClicked" text="Modify" />-->
-                        <Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete" />
+                        <Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Usuń" />
                     </children>
                 </HBox>
                 <ListView fx:id="cemeteryListView" onMouseClicked="#cemeteryItemClicked" VBox.vgrow="ALWAYS" />

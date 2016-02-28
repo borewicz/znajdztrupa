@@ -23,8 +23,8 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loggedLabel.setText("Not logged.");
-        loginButton.setText("Login");
+        loggedLabel.setText("");
+        loginButton.setText("Zaloguj");
     }
 
     public void setVista(Node node) {

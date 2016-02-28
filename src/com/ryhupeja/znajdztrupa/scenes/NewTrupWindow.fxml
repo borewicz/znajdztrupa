@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryhupeja.znajdztrupa.controllers.NewTrupWindowController">
@@ -22,22 +23,24 @@
             </rowConstraints>
             <children>
                 <Label text="PESEL:" />
-                <Button fx:id="closeButton" cancelButton="true" mnemonicParsing="false" onAction="#closeButtonClicked" text="Cancel" GridPane.rowIndex="8" />
-                <Button fx:id="createButton" defaultButton="true" mnemonicParsing="false" onAction="#createButtonClicked" text="Create" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                <Button fx:id="createButton" defaultButton="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createButtonClicked" text="OK" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                 <TextField fx:id="peselTextField" GridPane.columnIndex="1" />
-                <Label text="Name:" GridPane.rowIndex="1" />
-                <Label text="Surname:" GridPane.rowIndex="2" />
-                <Label text="Born:" GridPane.rowIndex="3" />
-                <Label text="Died:" GridPane.rowIndex="4" />
+                <Label text="Imię:" GridPane.rowIndex="1" />
+                <Label text="Nazwisko:" GridPane.rowIndex="2" />
+                <Label text="Urodzony:" GridPane.rowIndex="3" />
+                <Label text="Zmarły:" GridPane.rowIndex="4" />
                 <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="surnameTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="bornTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="diedTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label text="Position X:" GridPane.rowIndex="5" />
-            <Label text="Position Y:" GridPane.rowIndex="6" />
+            <Label text="Rząd:" GridPane.rowIndex="5" />
+            <Label text="Kolumna:" GridPane.rowIndex="6" />
             <TextField fx:id="positionXTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="positionYTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
         </GridPane>
     </bottom>
 </BorderPane>

@@ -46,7 +46,7 @@ public class TrupDetailWindowController implements Argumentable {
         ObservableList<String> list = FXCollections.observableArrayList();
 
         ResultSet result = Database.executeQuery(
-                "select t.name, surname, c.name as cemetery_name, pesel, died " +
+                "select t.name, surname, c.name as cemetery_name, pesel, born, died " +
                         "from trupy t " +
                         "inner join places p on p.trupy_pesel=t.pesel " +
                         "inner join cemeteries c on p.cemetery_name=c.name " +
@@ -57,9 +57,9 @@ public class TrupDetailWindowController implements Argumentable {
                 "select title from photos where trupy_pesel='" + pesel + "'");
         try {
             while (result.next()) {
-                nameLabel.setText(result.getString("name"));
-                surnameLabel.setText(result.getString("surname"));
-                diedLabel.setText(Integer.toString(result.getInt("died")));
+                nameLabel.setText(result.getString("name") + " " + result.getString("surname"));
+                diedLabel.setText(Integer.toString(result.getInt("born")) + " - " +
+                        Integer.toString(result.getInt("died")));
                 cemeteryLabel.setText(result.getString("cemetery_name"));
             }
             while (snitches.next()) {

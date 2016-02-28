@@ -39,6 +39,7 @@ public class Windows {
             Stage stage = new Stage();
             stage.setTitle(title);
             stage.setScene(new Scene(root, width, height));
+            stage.setResizable(false);
             stage.show();
             if (data != null) {
                 Argumentable controller = loader.getController();

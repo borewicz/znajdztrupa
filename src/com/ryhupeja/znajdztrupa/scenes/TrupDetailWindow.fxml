@@ -4,24 +4,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryhupeja.znajdztrupa.controllers.TrupDetailWindowController">
     <center>
         <VBox>
             <children>
-                <Label fx:id="nameLabel" text="">
+                <Label fx:id="nameLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="JAN PAWEŁ" textAlignment="CENTER">
                     <VBox.margin>
                         <Insets bottom="10.0" />
                     </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
                 </Label>
-                <Label fx:id="surnameLabel" text="">
+                <Label fx:id="diedLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="2137 - 0204">
                     <VBox.margin>
                         <Insets bottom="10.0" />
                     </VBox.margin>
-                </Label>
-                <Label fx:id="diedLabel" text="">
-                    <VBox.margin>
-                        <Insets bottom="10.0" />
-                    </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
                 </Label>
                 <Label fx:id="cemeteryLabel" text="">
                     <VBox.margin>
