@@ -10,8 +10,6 @@ import javafx.stage.Stage;
 
 public class NewCemeteryWindowController implements Argumentable {
     @FXML
-    private Button closeButton;
-    @FXML
     private TextField cemeteryNameTextField;
     private String oldName;
 
@@ -33,7 +31,7 @@ public class NewCemeteryWindowController implements Argumentable {
 
     @FXML
     protected void closeButtonClicked(ActionEvent event) {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
+        Stage stage = (Stage) cemeteryNameTextField.getScene().getWindow();
         stage.close();
     }
 
@@ -44,7 +42,7 @@ public class NewCemeteryWindowController implements Argumentable {
 //        else
         String query = "insert into cemeteries (name) values ('" + cemeteryNameTextField.getText() + "')";
         if (Database.executeUpdate(query) > 0) {
-            Stage stage = (Stage) closeButton.getScene().getWindow();
+            Stage stage = (Stage) cemeteryNameTextField.getScene().getWindow();
             stage.close();
             SceneNavigator.loadScene(SceneNavigator.CEMETERY, null, true);
         }
