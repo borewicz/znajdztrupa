@@ -36,6 +36,7 @@ public class SceneNavigator {
     public static final String NEW_TRUP = PATH + "NewTrupWindow.fxml";
     public static final String TRUP_DETAILS = PATH + "TrupDetailWindow.fxml";
     public static final String UPLOAD_IMAGE = PATH + "UploadImageWindow.fxml";
+    public static final String SEARCH = PATH + "SearchWindow.fxml";
 //    public static final String VISTA_2 = "vista2.fxml";
 
 

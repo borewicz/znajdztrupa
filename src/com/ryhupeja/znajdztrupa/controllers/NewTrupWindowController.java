@@ -88,9 +88,16 @@ public class NewTrupWindowController implements Argumentable {
                     diedTextField.getText(),
                     pesel);
             if (Database.executeUpdate(updateQuery) > 0) {
-                Stage stage = (Stage) peselTextField.getScene().getWindow();
-                stage.close();
-                SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryName);
+                if (cemeteryName != null) {
+                    Stage stage = (Stage) peselTextField.getScene().getWindow();
+                    stage.close();
+                    SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryName);
+                }
+                else {
+                    Stage stage = (Stage) peselTextField.getScene().getWindow();
+                    stage.close();
+                    SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS, pesel);
+                }
             }
         }
         else {

@@ -3,6 +3,7 @@ package com.ryhupeja.znajdztrupa.controllers;
 import com.ryhupeja.znajdztrupa.Database;
 import com.ryhupeja.znajdztrupa.SceneNavigator;
 import com.ryhupeja.znajdztrupa.Windows;
+import com.ryhupeja.znajdztrupa.TrupItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,29 +17,11 @@ import javafx.util.Pair;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-class Trup {
-    private String description;
-    private String pesel;
-
-    Trup(String description, String pesel) {
-        this.description = description;
-        this.pesel = pesel;
-    }
-
-    public String toString() {
-        return description;
-    }
-
-    public String getPesel() {
-        return pesel;
-    }
-}
-
 public class CemeteryDetailsWindowController implements Argumentable {
     @FXML
     private Label nameLabel;
     @FXML
-    private ListView<Trup> trupyListView;
+    private ListView<TrupItem> trupyListView;
     @FXML
     private HBox buttonsBox;
 
@@ -46,12 +29,12 @@ public class CemeteryDetailsWindowController implements Argumentable {
 
     public void loadData(Object data) {
         trupyListView.getItems().clear();
-        ObservableList<Trup> list = FXCollections.observableArrayList();
+        ObservableList<TrupItem> list = FXCollections.observableArrayList();
         ResultSet result = Database.executeQuery("select name,surname,pesel from places p inner join trupy t on p.trupy_pesel=t.pesel " +
                 "where cemetery_name='" + (String) data + "'");
         try {
             while (result.next()) {
-                list.add(new Trup(String.format("%s %s",
+                list.add(new TrupItem(String.format("%s %s",
 //                        result.getInt("x"),
 //                        result.getInt("y"),
                         result.getString("name"),
@@ -98,7 +81,7 @@ public class CemeteryDetailsWindowController implements Argumentable {
     protected void trupItemClicked(MouseEvent event) {
         if ((event.getClickCount() == 2) && !(trupyListView.getSelectionModel().isEmpty())) {
             SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS,
-                    ((Trup)trupyListView.getSelectionModel().getSelectedItem()).getPesel());
+                    ((TrupItem)trupyListView.getSelectionModel().getSelectedItem()).getPesel());
         }
     }
 }

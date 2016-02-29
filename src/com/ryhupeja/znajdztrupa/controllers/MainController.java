@@ -46,4 +46,9 @@ public class MainController implements Initializable {
             SceneNavigator.updateLoggedState();
         }
     }
+
+    @FXML
+    protected void searchButtonClicked(ActionEvent event) {
+        SceneNavigator.loadScene(SceneNavigator.SEARCH, null);
+    }
 }

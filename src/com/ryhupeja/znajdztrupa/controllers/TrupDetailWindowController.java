@@ -15,6 +15,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.util.Pair;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -29,13 +31,15 @@ import java.sql.SQLException;
  */
 public class TrupDetailWindowController implements Argumentable {
     @FXML
-    private Label nameLabel, surnameLabel, cemeteryLabel, diedLabel;
+    private Label nameLabel, cemeteryLabel, diedLabel, countLabel;
     @FXML
-    private Button snitchesButton, modifyButton, removeButton, uploadImageButton;
+    private Button snitchesButton, modifyButton, removeButton, uploadImageButton, deleteImageButton;
     @FXML
     private ListView<String> photosListView;
     @FXML
     private ImageView imageView;
+    @FXML
+    private HBox modifyBox;
 
     private String pesel;
     private boolean liked;
@@ -73,16 +77,28 @@ public class TrupDetailWindowController implements Argumentable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        snitchesButton.setText(Integer.toString(snitchesCount));
         if (Database.userType != -1) {
             snitchesButton.setVisible(true);
+            uploadImageButton.setVisible(true);
             if (Database.userType == 1) {
-                modifyButton.setVisible(true);
-                removeButton.setVisible(true);
-                uploadImageButton.setVisible(true);
+                modifyBox.setVisible(true);
             }
+            else
+                modifyBox.setVisible(false);
+        }
+        else {
+            snitchesButton.setVisible(false);
+            uploadImageButton.setVisible(false);
+            modifyBox.setVisible(false);
         }
         photosListView.setItems(list);
+        countLabel.setText("Ilość polubień: " + Integer.toString(snitchesCount));
+        if (liked) {
+            snitchesButton.setText("Nie lubię tego");
+        }
+        else {
+            snitchesButton.setText("Lubię to!");
+        }
     }
 
     @FXML
@@ -134,6 +150,37 @@ public class TrupDetailWindowController implements Argumentable {
             }
 //            System.out.println(photosListView.getSelectionModel().getSelectedItem());
 //            SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryListView.getSelectionModel().getSelectedItem());
+        }
+    }
+
+    @FXML
+    protected void modifyButtonClicked(ActionEvent event) {
+        Windows.showWindow(SceneNavigator.NEW_TRUP, "Edytuj trupa", 400, 300,
+                new Pair<String, String>(null, pesel));
+    }
+
+    @FXML
+    protected void deleteButtonClicked(ActionEvent event) {
+        if (pesel != null) {
+            if ((Windows.showConfirmationMessage("Wszystkie elementy związane z trupem (np. zdjęcia) zostaną usunięte.\n" +
+                    "Czy na pewno chcesz usunąć trupa?")) &&
+                    (Database.executeUpdate(String.format("delete from trupy where pesel='%s'", pesel)) > 0)) {
+//                loadData(null);
+                SceneNavigator.goBack();
+            }
+        }
+    }
+
+    @FXML
+    protected void deletePhotoClicked(ActionEvent event) {
+        String title = photosListView.getSelectionModel().getSelectedItem();
+        if (title != null) {
+            if ((Windows.showConfirmationMessage("Czy na pewno chcesz usunąć zdjęcie?")) &&
+                    (Database.executeUpdate(String.format("delete from photos where trupy_pesel='%s' and title='%s'",
+                            pesel, title)) > 0)) {
+                loadData(pesel);
+                imageView.setImage(null);
+            }
         }
     }
 }

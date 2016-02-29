@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
+
 <VBox prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ryhupeja.znajdztrupa.controllers.MainController">
     <children>
       <GridPane minHeight="-Infinity">
@@ -24,7 +28,7 @@
             </Label>
             <HBox prefWidth="95.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER">
                <children>
-                  <Button mnemonicParsing="false" text="⚲" />
+                  <Button onAction="#searchButtonClicked" mnemonicParsing="false" text="⚲" />
                   <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginButtonClicked" text="Zaloguj" />
                </children>
             </HBox>
