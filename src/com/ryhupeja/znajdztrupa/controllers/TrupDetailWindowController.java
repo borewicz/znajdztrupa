@@ -82,9 +82,12 @@ public class TrupDetailWindowController implements Argumentable {
             uploadImageButton.setVisible(true);
             if (Database.userType == 1) {
                 modifyBox.setVisible(true);
+                deleteImageButton.setVisible(true);
             }
-            else
+            else {
                 modifyBox.setVisible(false);
+                deleteImageButton.setVisible(false);
+            }
         }
         else {
             snitchesButton.setVisible(false);
@@ -115,7 +118,7 @@ public class TrupDetailWindowController implements Argumentable {
 
     @FXML
     protected void uploadButtonClicked(ActionEvent event) {
-        Windows.showWindow(SceneNavigator.UPLOAD_IMAGE, "Upload image", 400, 500, pesel);
+        Windows.showWindow(SceneNavigator.UPLOAD_IMAGE, "Wczytaj zdjęcie", 400, 150, pesel);
     }
 
     private Image convertToJavaFXImage(byte[] raw, final int width, final int height) {

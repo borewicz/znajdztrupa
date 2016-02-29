@@ -81,7 +81,7 @@ public class CemeteryDetailsWindowController implements Argumentable {
     protected void trupItemClicked(MouseEvent event) {
         if ((event.getClickCount() == 2) && !(trupyListView.getSelectionModel().isEmpty())) {
             SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS,
-                    ((TrupItem)trupyListView.getSelectionModel().getSelectedItem()).getPesel());
+                    ((TrupItem)trupyListView.getSelectionModel().getSelectedItem()).getPesel(), false);
         }
     }
 }

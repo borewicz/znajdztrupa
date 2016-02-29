@@ -91,12 +91,12 @@ public class NewTrupWindowController implements Argumentable {
                 if (cemeteryName != null) {
                     Stage stage = (Stage) peselTextField.getScene().getWindow();
                     stage.close();
-                    SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryName);
+                    SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryName, true);
                 }
                 else {
                     Stage stage = (Stage) peselTextField.getScene().getWindow();
                     stage.close();
-                    SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS, pesel);
+                    SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS, pesel, true);
                 }
             }
         }
@@ -104,10 +104,11 @@ public class NewTrupWindowController implements Argumentable {
             int x = Integer.parseInt(positionXTextField.getText());
             int y = Integer.parseInt(positionYTextField.getText());
             if (checkIfFull()) {
-                System.out.println("Jest full, elo.");
+                Windows.showMessage("Wszystkie miejsca zajęte.", Alert.AlertType.INFORMATION);
                 return;
             }
             if (addPlace(x, y)) {
+                Database.setAutoCommit(false);
                 String addTrupQuery = String.format("insert into trupy values (%s, '%s', '%s', %s, %s)",
                         peselTextField.getText(),
                         nameTextField.getText(),
@@ -117,12 +118,15 @@ public class NewTrupWindowController implements Argumentable {
                 String updatePlaceQuery = String.format("update places set trupy_pesel='%s' where " +
                         "x=%d and y=%d and cemetery_name='%s'", peselTextField.getText(), x, y, cemeteryName);
                 if ((Database.executeUpdate(addTrupQuery) > 0) && (Database.executeUpdate(updatePlaceQuery) > 0)) {
+                    Database.commit();
                     Stage stage = (Stage) peselTextField.getScene().getWindow();
                     stage.close();
-                    SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryName);
+                    SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryName, true);
                 } else {
                     Windows.showMessage("Coś się zepsuło i nie było mnie słychać.", Alert.AlertType.ERROR);
+                    Database.rollback();
                 }
+                Database.setAutoCommit(true);
             } else {
                 Windows.showMessage("Miejsce jest już zajęte.", Alert.AlertType.INFORMATION);
             }

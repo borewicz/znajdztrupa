@@ -18,7 +18,7 @@ public class Main extends Application {
             MainController mainController = loader.getController();
 
             SceneNavigator.setMainController(mainController);
-            SceneNavigator.loadScene(SceneNavigator.CEMETERY, null);
+            SceneNavigator.loadScene(SceneNavigator.CEMETERY, null, false);
 
             Scene scene = new Scene(root, 800, 600);
             scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

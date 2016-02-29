@@ -69,7 +69,7 @@ public class UploadImageWindowController implements Argumentable {
                 statement.executeUpdate();
                 Stage stage = (Stage) descriptionTextField.getScene().getWindow();
                 stage.close();
-                SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS, pesel);
+                SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS, pesel, true);
 
             } catch (SQLException e) {
                 e.printStackTrace();

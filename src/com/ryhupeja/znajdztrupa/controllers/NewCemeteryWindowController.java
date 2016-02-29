@@ -46,7 +46,7 @@ public class NewCemeteryWindowController implements Argumentable {
         if (Database.executeUpdate(query) > 0) {
             Stage stage = (Stage) closeButton.getScene().getWindow();
             stage.close();
-            SceneNavigator.loadScene(SceneNavigator.CEMETERY, null);
+            SceneNavigator.loadScene(SceneNavigator.CEMETERY, null, true);
         }
     }
 

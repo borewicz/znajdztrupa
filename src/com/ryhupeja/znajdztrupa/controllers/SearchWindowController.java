@@ -52,7 +52,7 @@ public class SearchWindowController {
     protected void trupItemClicked(MouseEvent event) {
         if ((event.getClickCount() == 2) && !(resultsListView.getSelectionModel().isEmpty())) {
             SceneNavigator.loadScene(SceneNavigator.TRUP_DETAILS,
-                    ((TrupItem)resultsListView.getSelectionModel().getSelectedItem()).getPesel());
+                    ((TrupItem)resultsListView.getSelectionModel().getSelectedItem()).getPesel(), false);
         }
     }
 }

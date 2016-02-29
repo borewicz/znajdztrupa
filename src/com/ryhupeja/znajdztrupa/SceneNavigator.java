@@ -54,7 +54,9 @@ public class SceneNavigator {
         }
     }
 
-    public static void loadScene(String fxml, Object data) {
+    public static void loadScene(String fxml, Object data, boolean refresh) {
+        if (refresh)
+            scenesHistory.pop();
         scenesHistory.push(new SavedScene(fxml, data));
         loadVista(fxml, data);
     }

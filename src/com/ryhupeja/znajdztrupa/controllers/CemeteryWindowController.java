@@ -44,7 +44,7 @@ public class CemeteryWindowController implements Argumentable {
 
     @FXML
     protected void loginButtonClicked(ActionEvent event) {
-        SceneNavigator.loadScene(SceneNavigator.LOGIN, null);
+        SceneNavigator.loadScene(SceneNavigator.LOGIN, null, false);
     }
 
     @FXML
@@ -74,7 +74,7 @@ public class CemeteryWindowController implements Argumentable {
     @FXML
     protected void cemeteryItemClicked(MouseEvent event) {
         if ((event.getClickCount() == 2) && !(cemeteryListView.getSelectionModel().isEmpty())) {
-            SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryListView.getSelectionModel().getSelectedItem());
+            SceneNavigator.loadScene(SceneNavigator.CEMETERY_DETAILS, cemeteryListView.getSelectionModel().getSelectedItem(), false);
         }
     }
 

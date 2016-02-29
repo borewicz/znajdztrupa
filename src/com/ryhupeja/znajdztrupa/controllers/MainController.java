@@ -39,16 +39,16 @@ public class MainController implements Initializable {
     @FXML
     protected void loginButtonClicked(ActionEvent event) {
         if (Database.loggedUser == null)
-            SceneNavigator.loadScene(SceneNavigator.LOGIN, null);
+            SceneNavigator.loadScene(SceneNavigator.LOGIN, null, false);
         else {
             Database.loggedUser = null;
-            SceneNavigator.loadScene(SceneNavigator.CEMETERY, null);
+            SceneNavigator.loadScene(SceneNavigator.CEMETERY, null, true);
             SceneNavigator.updateLoggedState();
         }
     }
 
     @FXML
     protected void searchButtonClicked(ActionEvent event) {
-        SceneNavigator.loadScene(SceneNavigator.SEARCH, null);
+        SceneNavigator.loadScene(SceneNavigator.SEARCH, null, false);
     }
 }
